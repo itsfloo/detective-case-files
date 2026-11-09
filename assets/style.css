@@ -1,0 +1,125 @@
+/* Case Files: shared stylesheet. Colors come only from these variables. */
+:root {
+  --bg: #14121a;
+  --card: #1e1b26;
+  --text: #ece7df;
+  --muted: #9a93a6;
+  --accent: #e0a458;
+  color-scheme: dark;
+}
+
+* { box-sizing: border-box; }
+
+html { scroll-behavior: smooth; }
+
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--text);
+  font-family: system-ui, -apple-system, "Segoe UI", Roboto, Arial, sans-serif;
+  line-height: 1.65;
+}
+
+h1, h2, h3 {
+  font-family: Georgia, "Times New Roman", serif;
+  line-height: 1.25;
+  margin: 0 0 0.5em;
+}
+
+h1 { font-size: 2.2rem; }
+h2 { font-size: 1.4rem; color: var(--accent); }
+h3 { font-size: 1.1rem; }
+
+a { color: var(--accent); }
+
+.container {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 2rem 1.25rem 3rem;
+}
+
+.site-header { margin-bottom: 2rem; }
+.intro { color: var(--muted); max-width: 60ch; }
+
+/* Card grid (home page) */
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 1.25rem;
+}
+
+.card, .suspect-card, .clue, details {
+  background: var(--card);
+  border: 1px solid color-mix(in srgb, var(--muted) 35%, transparent);
+  border-radius: 12px;
+  padding: 1.1rem 1.25rem;
+}
+
+.card h2 { color: var(--text); }
+.card.soon { border-style: dashed; color: var(--muted); }
+.info { color: var(--muted); font-size: 0.9rem; }
+
+.button {
+  display: inline-block;
+  margin-top: 0.4rem;
+  padding: 0.5rem 1rem;
+  border: 1px solid var(--accent);
+  border-radius: 12px;
+  text-decoration: none;
+  font-weight: 600;
+}
+.button:hover { background: var(--accent); color: var(--bg); }
+
+/* Difficulty tag */
+.tag {
+  display: inline-block;
+  padding: 0.1rem 0.7rem;
+  border: 1px solid var(--accent);
+  border-radius: 999px;
+  color: var(--accent);
+  font-size: 0.8rem;
+  font-weight: 600;
+  margin-bottom: 0.6rem;
+}
+
+/* Case page */
+.case-header { margin-bottom: 1.5rem; }
+.hook { color: var(--muted); font-size: 1.1rem; }
+.back { display: inline-block; margin-bottom: 1rem; font-size: 0.9rem; }
+
+section { margin-bottom: 2rem; }
+
+.suspect-card, .clue { margin-bottom: 0.9rem; }
+.suspect-card p, .clue p { margin: 0.2rem 0; }
+.suspect-card .role { color: var(--muted); font-size: 0.9rem; margin-bottom: 0.4rem; }
+.clue-id { color: var(--accent); font-weight: 700; margin-right: 0.4rem; }
+
+details summary { cursor: pointer; font-weight: 600; color: var(--accent); }
+details[open] summary { margin-bottom: 0.7rem; }
+
+ol.questions { padding-left: 1.2rem; }
+
+.ending { margin-bottom: 0.9rem; }
+.ending strong { color: var(--accent); }
+
+footer {
+  border-top: 1px solid color-mix(in srgb, var(--muted) 35%, transparent);
+  color: var(--muted);
+  font-size: 0.85rem;
+  padding-top: 1rem;
+  margin-top: 2rem;
+}
+
+@media (max-width: 480px) {
+  h1 { font-size: 1.7rem; }
+  .container { padding: 1.25rem 1rem 2rem; }
+}
+
+.case-label {
+  font-family: system-ui, -apple-system, "Segoe UI", Roboto, Arial, sans-serif;
+  font-size: 0.85rem;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--muted);
+  margin-bottom: 0.4rem;
+}
