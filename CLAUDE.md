@@ -28,10 +28,12 @@ Language: English for all page content unless the user asks otherwise.
 ├── README.md               # short project description + live site link
 ├── assets/
 │   ├── style.css           # the only shared stylesheet
-│   └── cases/              # images for cases, named <case-slug>-<name>.png
+│   └── cases/              # images for cases, named <case-slug>-<name>.png (created when the first image is added)
 └── cases/
-    └── <case-slug>/
-        └── index.html      # one page per case
+    ├── rosewood-mansion/
+    │   └── index.html      # one page per case
+    └── vanishing-canvas/
+        └── index.html
 ```
 
 ## 4. Naming rules
@@ -58,15 +60,15 @@ Every case card has exactly these parts, in this order:
 2. Case title
 3. Two-sentence hook (no spoilers)
 4. Info line: number of suspects and number of clues
-5. A "Open case" link to `cases/<case-slug>/index.html`
+5. An "Open case" link to `cases/<case-slug>/index.html`
 
 New cards are added at the top of the grid (newest first). Keep the "More cases coming soon" card as the last item.
 
 ## 7. Case page template (`cases/<case-slug>/index.html`)
 
-Every case page contains these sections, in this exact order, each with an `<h2>`:
+Every case page contains these sections, in this exact order. Each section has an `<h2>`:
 
-1. **Header**: case title, difficulty tag, one-line hook, link back to the home page.
+1. **Header**: case title (`<h1>`), then `<h2 class="case-label">Case file</h2>`, the difficulty tag, a one-line hook, and a link back to the home page.
 2. **Scenario**: 1 to 3 short paragraphs (who, where, when, what was found).
 3. **Suspects**: exactly 3 suspect cards. Each card shows name, role, personality, and alibi.
 4. **Clues**: 5 to 8 clues. Each has an id (`c1`, `c2`, ...), a name, and where it was found.
@@ -74,13 +76,17 @@ Every case page contains these sections, in this exact order, each with an `<h2>
 6. **Solution**: hidden inside a `<details>` element, closed by default. Contains the culprit, motive, method, and which clues prove it.
 7. **Endings**: three short endings: correct culprit with good reasoning, correct culprit with weak reasoning, wrong culprit.
 
-Use `class="suspect-card"`, `class="clue"`, and `class="tag"` for these elements so the shared CSS applies.
+Wrap the page content in `<div class="container">` and use these class names so the shared CSS applies:
+
+- Case page: `case-header`, `tag`, `hook`, `back`, `case-label`, `suspect-card`, `role`, `clue`, `clue-id`, `questions`, `ending`.
+- Home page: `container`, `site-header`, `intro`, `grid`, `card`, `tag`, `info`, `button`, `soon`.
 
 ## 8. Content rules
 
 - Every case must be solvable using only the clues listed on the page.
 - Exactly one culprit. Each suspect has a believable motive. At least one suspect is a red herring.
-- The solution and the culprit's name must appear only inside the `<details>` block (Section 6 of the page) and the endings. Never in the title, hook, scenario, or card text.
+- The solution and the culprit's name must appear only inside the `<details>` block (the Solution section of the case page) and the endings. Never in the title, hook, scenario, or card text.
+- Each case's hook, clues, and endings must use different wording from existing cases.
 - Do not use real people, real brands, or real crimes. Keep violence mild and non-graphic.
 
 ## 9. How to add a new case (follow in order)
@@ -92,6 +98,8 @@ Use `class="suspect-card"`, `class="clue"`, and `class="tag"` for these elements
 5. Run the checklist in Section 10.
 6. Summarize for the user what was added (files created and changed).
 
+When changing an existing case (title, difficulty, hook, or counts), update both the case page and its card in `index.html` so they always match.
+
 ## 10. Definition of done (check before finishing)
 
 - [ ] The new page opens correctly from the home page and links back.
@@ -99,6 +107,8 @@ Use `class="suspect-card"`, `class="clue"`, and `class="tag"` for these elements
 - [ ] The solution is hidden in a closed `<details>` and does not appear anywhere else except the endings.
 - [ ] File and folder names follow the naming rules.
 - [ ] Only `assets/style.css` variables are used for colors. No external requests.
+- [ ] The class names from Section 7 are used.
+- [ ] The hook and endings use different wording from existing cases.
 - [ ] The home page card has all five parts and no spoilers.
 
 ## 11. Do not
